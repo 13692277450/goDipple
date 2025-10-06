@@ -1,0 +1,59 @@
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+
+	"github.com/segmentio/kafka-go"
+)
+
+func KafkaReader() {
+	reader := kafka.NewReader(kafka.ReaderConfig{
+		Brokers: []string{"localhost:9092"},
+		GroupID: "consumer-group",
+		Topic:   "user",
+	})
+	defer reader.Close()
+	ctx := context.Background()
+	for {
+		msg, err := reader.ReadMessage(ctx)
+		if err != nil {
+			fmt.Printf("Failure to read meesages: %v\n", err)
+			break
+		}
+		fmt.Printf("Received messages: %s\n", string(msg.Value))
+	}
+}
+
+type User struct {
+	Id       int64  `json:"id"`
+	UserName string `json:"user_name"`
+	Age      int64  `json:"age"`
+}
+
+func KafkaWriter() {
+	writer := kafka.Writer{
+		Addr:     kafka.TCP("localhost:9092"),
+		Topic:    "user",
+		Balancer: &kafka.Hash{},
+	}
+	defer writer.Close()
+
+	ctx := context.Background()
+	for i := 0; i < 5; i++ {
+		user := User{
+			Id:       int64(i + 1),
+			UserName: fmt.Sprintf("user-%d", i),
+			Age:      20,
+		}
+		msg, _ := json.Marshal(user)
+		err := writer.WriteMessages(ctx, kafka.Message{
+			Key:   []byte(fmt.Sprintf("%d", user.Id)),
+			Value: msg,
+		})
+		if err != nil {
+			fmt.Printf("Failure to send messages out: %v\n", err)
+		}
+	}
+}
