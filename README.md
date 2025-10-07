@@ -17,7 +17,8 @@ version: 0.1, officially release.
 
 ##** The application can auto self upgrade when run godipple -upgrade:
 
-<img width="1343" height="320" alt="image" src="https://github.com/user-attachments/assets/42eb7559-49c0-47f7-a517-d25ce6547dd1" />
+<img width="1509" height="224" alt="image" src="https://github.com/user-attachments/assets/8aff0554-6c81-4e01-a942-665aeda8f56e" />
+
 -------------------------------------------------------------------------------------
 
 ###** You can customize code from source code to meet your demand. pls don't heistate to provide your kindly
