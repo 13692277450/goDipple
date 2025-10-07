@@ -1,5 +1,10 @@
 # goDipple
- A golang package for initiallize some functions
+ A golang package tool for initiallize some functions
+
+ version: 0.11, Add K8s function and fixed bug.
+
+======================================================================================
+ version: 0.1
  -------------------------------------------------------------------------------------
  
 ##** Below is the application main menu:
