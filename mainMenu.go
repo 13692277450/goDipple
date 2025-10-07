@@ -23,6 +23,8 @@ var (
 	Init_Zap                    bool = false
 	Init_PrettyShutDown         bool = false
 	Init_ProjectFolderStructure bool = false
+	Init_K8s                    bool = false
+
 )
 
 var (
@@ -46,7 +48,7 @@ func initialModel() model {
 	return model{
 		// Our to-do list is a grocery list
 		choices: []string{"Init Settings", "Init Project Folder Structure", "Init MySQL",
-			"Init Redis", "Init MongoDB", "Init Kafka", "Init RabbitMQ", "Init Zap",
+			"Init Redis", "Init MongoDB", "Init Kafka", "Init RabbitMQ", "Init K8s Client-Go", "Init Zap",
 			"Init Consul", "Init Pretty Shutdown"},
 
 		// A map which indicates which choices are selected. We're using
@@ -132,6 +134,9 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 					case "Init Zap":
 						Init_Zap = true
 						ZapCfg()
+					case "Init K8s Client-Go":
+						Init_K8s = true
+						K8sCfg()
 					case "Init Pretty Shutdown":
 						Init_PrettyShutDown = true
 						PrettyShutDownCfg()
