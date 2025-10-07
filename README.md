@@ -3,8 +3,9 @@
  -------------------------------------------------------------------------------------
  
 ##** Below is the application main menu:
- 
-<img width="1276" height="673" alt="image" src="https://github.com/user-attachments/assets/b6b3477d-9886-4a66-93f7-7000165af00e" />
+
+ <img width="876" height="515" alt="image" src="https://github.com/user-attachments/assets/54710c25-d3e0-482b-bd0d-c1a3c32af95d" />
+
 -------------------------------------------------------------------------------------
 
 ##** The application can auto self upgrade when run godipple -upgrade:
