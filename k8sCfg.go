@@ -5,12 +5,12 @@ func K8sCfg() {
 	if Init_K8s {
 
 		FolderCheck("k8s/config", "k8s/config", "[K8S] ")
-		WriteContentToConfigYaml(K8s_KubeConfig, "k8s/config/kubeConfig.go", "[K8S] ")
+		WriteContentToConfigYaml(K8s_KubeConfig, "k8s/kubeConfig.go", "[K8S] ")
 		WriteContentToConfigYaml(K8s_Config_Yaml, "k8s/config/config.yaml", "[K8S] ")
-		WriteContentToConfigYaml(K8s_ClientSet, "k8s/config/client.go", "[K8S] ")
+		WriteContentToConfigYaml(K8s_ClientSet, "k8s/client.go", "[K8S] ")
 		WriteContentToConfigYaml(K8s_Deployment_Yaml, "k8s/config/deployment.yaml", "[K8S] ")
-		WriteContentToConfigYaml(K8s_DynamicClient, "k8s/config/dynamicClient.go", "[K8S] ")
-		WriteContentToConfigYaml(K8s_DiscoveryClient, "k8s/config/discoveryClient.go", "[K8S] ")
+		WriteContentToConfigYaml(K8s_DynamicClient, "k8s/dynamicClient.go", "[K8S] ")
+		WriteContentToConfigYaml(K8s_DiscoveryClient, "k8s/discoveryClient.go", "[K8S] ")
 	}
 }
 
@@ -19,12 +19,11 @@ var (
 	K8s_DiscoveryClient = `package main
 
 import (
-        "fmt"
-        "k8s-clientset/config"
+	"fmt"
 )
 
 func K8s_DiscoveryClient() {
-        client := config.NewK8sConfig().InitDiscoveryClient()
+        client := NewK8sConfig().InitDiscoveryClient()
         // Read gvr
         preferredResources, _ := client.ServerPreferredResources()
         for _, pr := range preferredResources {
@@ -102,21 +101,30 @@ spec:
           ports:
             - containerPort: 8080`
 
-	K8s_ClientSet = `func K8s_ClientSet() {
+	K8s_ClientSet = `package main
+
+import (
+	"context"
+	"fmt"
+
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+)
+
+func K8s_ClientSet() {
     // Loading configures and clients
+    ns := "default"
 
     cliset := NewK8sConfig().InitClient()
-    configMaps, err := cliset.CoreV1().ConfigMaps(ns).List(metav1.ListOptions{})
+    configMaps, err := cliset.CoreV1().ConfigMaps(ns).List(context.TODO(), metav1.ListOptions{})
     if err != nil {
        panic(err)
     }
     for _, cm := range configMaps.Items {
        fmt.Printf("configName: %v, configData: %v \n", cm.Name, cm.Data)
     }
-    return nil
 }`
 
-	K8s_KubeConfig = `package config
+	K8s_KubeConfig = `package main
 
 import (
 	"log"
