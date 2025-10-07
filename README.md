@@ -11,6 +11,6 @@
 
 ###** You can customize code from source code to meet your demand.
 
-##** Technican support: m13692277450@outlook.com
+##** Technical support: m13692277450@outlook.com
 
 
