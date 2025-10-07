@@ -11,7 +11,8 @@ version: 0.1, officially release.
  
 ##** Below is the application main menu:
 
- <img width="876" height="515" alt="image" src="https://github.com/user-attachments/assets/54710c25-d3e0-482b-bd0d-c1a3c32af95d" />
+<img width="1216" height="496" alt="image" src="https://github.com/user-attachments/assets/07988d42-0f31-4524-8d20-9b50f037287d" />
+
 
 -------------------------------------------------------------------------------------
 
