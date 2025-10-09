@@ -24,6 +24,7 @@ var (
 	Init_PrettyShutDown         bool = false
 	Init_ProjectFolderStructure bool = false
 	Init_K8s                    bool = false
+	Init_WindowsRegistry		bool = false
 
 )
 
@@ -47,9 +48,9 @@ type model struct {
 func initialModel() model {
 	return model{
 		// Our to-do list is a grocery list
-		choices: []string{"Init Settings", "Init Project Folder Structure", "Init MySQL",
+		choices: []string{"Init Settings with Viper", "Init Project Folder Structure", "Init MySQL",
 			"Init Redis", "Init MongoDB", "Init Kafka", "Init RabbitMQ", "Init K8s Client-Go", "Init Zap",
-			"Init Consul", "Init Pretty Shutdown"},
+			"Init Consul", "Init Windows Registry", "Init Pretty Shutdown"},
 
 		// A map which indicates which choices are selected. We're using
 		// the  map like a mathematical set. The keys refer to the indexes
@@ -103,7 +104,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				for i := range m.selected {
 					fmt.Println("\n" + cyan.Render(m.choices[i]))
 					switch m.choices[i] {
-					case "Init Settings":
+					case "Init Settings with Viper":
 						Init_Settings = true
 						SettingsCfg()
 					case "Init Project Folder Structure":
@@ -137,6 +138,9 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 					case "Init K8s Client-Go":
 						Init_K8s = true
 						K8sCfg()
+					case "Init Windows Registry":
+						Init_WindowsRegistry = true
+						WindowsRegistryCfg()
 					case "Init Pretty Shutdown":
 						Init_PrettyShutDown = true
 						PrettyShutDownCfg()

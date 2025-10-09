@@ -1,0 +1,91 @@
+//WindowsRegistry_Config_Read
+package main
+
+import (
+	"fmt"
+
+	"golang.org/x/sys/windows/registry"
+)
+
+func ReadRegistry() {
+	key, err := registry.OpenKey(registry.LOCAL_MACHINE, `Software\Microsoft\Windows\CurrentVersion`, registry.QUERY_VALUE)
+	if err != nil {
+		fmt.Println("Error opening key:", err)
+		return
+	}
+	defer key.Close()
+
+	value, _, err := key.GetStringValue("ProgramFilesDir")
+	if err != nil {
+		fmt.Println("Error reading value:", err)
+		return
+	}
+
+	fmt.Println("ProgramFilesDir:", value)
+}
+//WindowsRegistry_Config_Read_End
+
+//WindowsRegistry_Config_Write
+package main
+
+import (
+	"fmt"
+	"golang.org/x/sys/windows/registry"
+)
+
+func WindowsRegistryWrite() {
+	key, err := registry.OpenKey(registry.CURRENT_USER, `Software\Application`, registry.SET_VALUE)
+	if err != nil {
+		fmt.Println("Error opening key:", err)
+		return
+	}
+	defer key.Close()
+
+	err = key.SetStringValue("MySetting", "SomeValue")
+	if err != nil {
+		fmt.Println("Error writing value:", err)
+		return
+	}
+
+	fmt.Println("Value written successfully.")
+}
+//WindowsRegistry_Config_Write_End
+
+//WindowsRegistry_Config_Start
+package main
+
+import (
+	"fmt"
+	"golang.org/x/sys/windows/registry"
+)
+
+func addStartupProgram(name, path string) error {
+	key, err := registry.OpenKey(registry.CURRENT_USER, `Software\Microsoft\Windows\CurrentVersion\Run`, registry.SET_VALUE)
+	if err != nil {
+		return err
+	}
+	defer key.Close()
+
+	err = key.SetStringValue(name, path)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func WindowsRegistryStart() {
+	err := addStartupProgram("StartApplication", "D:\\Path\\start.exe")
+	if err != nil {
+		fmt.Println("Failure to adding startup application:", err)
+		return
+	}
+
+	fmt.Println("Success to add startup application.")
+}
+//WindowsRegistry_Config_Start_End
+
+
+
+
+

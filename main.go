@@ -1,6 +1,17 @@
 package main
 
-//tjikko, dipple, panda
+/*
+Version: 0.12
+Author: Mang Zhang, Shenzhen China
+Release Date: 2024-10-07
+Project Name: GoDipple
+Description: A tool to help developers quickly create a project structure and initiallize function in Go project.
+Copy Rights: MIT License
+Email: m13692277450@outlook.com
+Mobile: +86-13692277450
+HomePage: www.pavogroup.top
+
+*/
 import (
 	"flag"
 	"fmt"
@@ -8,7 +19,7 @@ import (
 )
 
 var (
-	CurrentVersion        = "0.1"
+	CurrentVersion        = "0.12"
 	NewVersionIsAvailable = ""
 	IsUpgrade             = flag.Bool("upgrade", false, "Run with -upgrade to upgrade new version of GoDipple")
 )
@@ -43,42 +54,6 @@ func main() {
 	os.Exit(0)
 
 }
-
-// var upgrade string
-// var help string
-
-// var rootCmd = &cobra.Command{
-// 	Use:   "-u",
-// 	Short: "upgrade goDipple.exe",
-// 	Long:  `Run goDipple.exe -u to upgrade`,
-// 	Run: func(cmd *cobra.Command, args []string) {
-// 		DownloadUpgrade()
-// 	},
-// }
-
-// func Execute() {
-// 	err := rootCmd.Execute()
-// 	if err != nil {
-// 		panic(err)
-// 		// os.Exit(1)
-// 	}
-// }
-
-// var helpCmd = &cobra.Command{
-// 	Use:   "-h",
-// 	Short: "Run goDipper -u to upgrade goDipple",
-// 	Long:  `Run goDipple.exe -u to upgrade, for issue, pls access www.pavogroup.top or https://github.com/13692277450/`,
-// 	Run: func(cmd *cobra.Command, args []string) {
-
-// 	},
-// }
-
-//	func ExecuteHelp() {
-//		err := helpCmd.Execute()
-//		if err != nil {
-//			os.Exit(1)
-//		}
-//	}
 func Init() {
 	flag.Parse()
 }
