@@ -1,3 +1,6 @@
+<img width="805" height="251" alt="image" src="https://github.com/user-attachments/assets/abd99f55-7ae9-4e66-bd94-f6dcc6e0cdb0" />
+
+
 # goDipple
  A golang package tool for initiallize some functions
 
