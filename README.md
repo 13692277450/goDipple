@@ -1,4 +1,4 @@
-<img width="805" height="251" alt="image" src="https://github.com/user-attachments/assets/abd99f55-7ae9-4e66-bd94-f6dcc6e0cdb0" />
+<img width="719" height="186" alt="image" src="https://github.com/user-attachments/assets/56bff56e-506f-4ca3-a6d8-763521300820" />
 
 
 # goDipple
